@@ -1,5 +1,0 @@
-CREATE DATABASE 671PROJECT;
-
-CREATE USER 'user'@'localhost' IDENTIFIED BY 'password';
-
-GRANT ALL PRIVILEGES ON 671PROJECT.* TO 'user'@'localhost';
