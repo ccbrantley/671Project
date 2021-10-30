@@ -1,0 +1,43 @@
+body {
+	background-color: whitesmoke;
+	margin: 0;
+}
+.mainNavigation a {
+	background-color: #AEBFD9;
+	border: 2px solid black;
+	color: black;
+	display: inline-block;
+	margin: auto;
+	padding: 10px;
+	text-align: center;
+	text-decoration: none;
+}
+.mainNavigation a:hover {
+	background-color: whitesmoke;
+}
+.mainNavigation {
+	background-color: #7D8880;
+	border-top: 2px solid black;
+	border-bottom: 2px solid black;
+	text-align: center;
+	padding: 10px;
+}
+.disabled {
+  pointer-events: none;
+  cursor: default;
+}
+.dropDown {
+	display: inline-block;
+}
+.dropDown:hover .dropDownContent{
+	display: block;
+}
+.dropDownContent a {
+	display: block;
+}
+.dropDownContent {
+	display: none;
+	position: absolute;
+	box-shadow: 10px 15px 5px 0px rgba(0,0,0,0.2);
+	z-index: 1;
+}
