@@ -1,6 +1,38 @@
 <?php
 	include $_SERVER['DOCUMENT_ROOT'] . '/671Project/templates/header.php';
 	include $_SERVER['DOCUMENT_ROOT'] . '/671Project/templates/footer.php';
+	$registrationResponse = "";
+	if (isset($_POST['registrationSubmit'])) {
+		include_once $_SERVER['DOCUMENT_ROOT'] . '/671Project/tools/DBFunctions.php';
+		$userNameValid = uniqueUserName($_POST['userName']);
+		if ($userNameValid !== NULL) {
+			if ($userNameValid == True) {
+				if (registerUser(array(
+				$_POST['userName'],
+				$_POST['password'],
+				$_POST['firstName'],
+				$_POST['lastName'],
+				$_POST['streetAddress'],
+				$_POST['cityAddress'],
+				$_POST['zipAddress'],
+				$_POST['stateAddress'],
+				$_POST['countryAddress'],
+				$_POST['creditCard'])) !=
+				NULL) {
+					$registrationResponse = "Registration was successful.";
+				}
+				else {
+					$registrationResponse = "Registration was not successful.";
+				}
+			}
+			else {
+				$registrationResponse = "Username is already taken, please choose a different one.";
+			}
+		}
+		else {
+			$registrationResponse = "Registration was not successful.";
+		}
+	}
 	echo <<<EOD
 		<h1>Registration</h1>
 		<form class = "registerForm" action = "" method = "post">
@@ -57,8 +89,9 @@
 			</div>
 
 			<div>
-				<input type = "submit" value = "Register">
+				<input type = "submit" name = "registrationSubmit" value = "Register">
 			</div>
 		</form>
+		<p class = "registrationResponse">$registrationResponse</p>
 	EOD;
 ?>
