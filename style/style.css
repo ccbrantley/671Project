@@ -41,3 +41,25 @@ body {
 	box-shadow: 10px 15px 5px 0px rgba(0,0,0,0.2);
 	z-index: 1;
 }
+.registerForm div {
+	display: table;
+	margin-left: auto;
+	margin-right: auto;
+}
+.registerForm div p {
+	display: table-row;
+}
+.registerForm div label,
+.registerForm div input[type = submit] {
+	display: table-cell;
+	margin: 10px;
+	padding: 10px;
+	text-align: right;
+}
+.registerForm input[type = text] {
+	display: table-cell;
+	text-align: right;
+}
+h1 {
+	text-align: center;
+}
