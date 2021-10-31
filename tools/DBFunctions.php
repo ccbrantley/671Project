@@ -22,7 +22,6 @@ function uniqueUserName ($_userName) {
 	}
 	return True;
 }
-
 function registerUser ($_userInfo) {
 	include_once $_SERVER['DOCUMENT_ROOT'] . '/671Project/tools/DBConnect.php';
 	try {
@@ -46,5 +45,29 @@ function registerUser ($_userInfo) {
 	}
 	return $result;
 }
-
+function loginUser ($_userInfo) {
+	include_once $_SERVER['DOCUMENT_ROOT'] . '/671Project/tools/DBConnect.php';
+	try {
+		$session = GETPDO();
+		if ($session == NULL) {
+			return $session;
+		}
+		$result = $session->prepare("
+			SELECT *
+			FROM CUSTOMER
+			WHERE username = ? AND
+			password = ?
+			;
+		");
+		$result->execute($_userInfo);
+	}
+	catch (Exception $ex) {
+		return NULL;
+	}
+	$rows = $result->fetch();
+	if (!$rows) {
+		return NULL;
+	}
+	return $rows;
+}
 ?>
