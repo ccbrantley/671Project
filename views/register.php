@@ -39,7 +39,7 @@ if (isset($_POST['registrationSubmit'])) {
 }
 echo <<<EOD
 	<h1>Registration</h1>
-	<form class = "userForm" action = "" method = "post">
+	<form class = "standardForm" action = "" method = "post">
 		<div>
 			<p>
 				<label for = "userName">User Name:</label>
