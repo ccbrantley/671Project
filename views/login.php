@@ -29,7 +29,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/671Project/templates/header.php';
 
 echo <<<EOD
 <h1>Login</h1>
-<form class = "userForm" action = "/671Project/views/login.php" method = "post">
+<form class = "standardForm" action = "/671Project/views/login.php" method = "post">
 	<div>
 		<p>
 			<label for = "userName">User Name:</label>
