@@ -1,4 +1,4 @@
-USE PROJECT671;
+USE 671PROJECT;
 
 CREATE TABLE ADMIN (
 user_id INT AUTO_INCREMENT NOT NULL,
@@ -74,24 +74,33 @@ CREATE TABLE PROCESSOR_MEMORY (
 	FOREIGN KEY (memory_id) REFERENCES MEMORY (memory_id)
 );
 
-CREATE TABLE BASE_SYSTEM (
-	base_id CHARACTER VARYING (64),
-	weight DECIMAL(8, 2),
-	size CHARACTER VARYING (32),
-	type ENUM ('laptop', 'tablet', 'hybrid'),
-	PRIMARY KEY (base_id)
-);
 
+/*
 CREATE TABLE SYSTEM_CONFIG (
-	base_id CHARACTER VARYING (64), 
 	processor_id CHARACTER VARYING (64),
 	memory_id CHARACTER VARYING (64),
 	storage_id CHARACTER VARYING (64),
 	os_name CHARACTER VARYING (64),
-	FOREIGN KEY (base_id) REFERENCES BASE_SYSTEM (base_id),
 	FOREIGN KEY (processor_id) REFERENCES PROCESSOR (processor_id),
 	FOREIGN KEY (memory_id) REFERENCES MEMORY (memory_id),
 	FOREIGN KEY (storage_id) REFERENCES STORAGE (storage_id),
 	FOREIGN KEY (os_name) REFERENCES O_SYSTEM (name)
 );
+*/
 
+CREATE TABLE BASE_SYSTEM (
+	base_id CHARACTER VARYING (64),
+	processor_id CHARACTER VARYING (64),
+	memory_id CHARACTER VARYING (64),
+	storage_id CHARACTER VARYING (64),
+	os_name CHARACTER VARYING (64),
+	weight DECIMAL(8, 2),
+	size CHARACTER VARYING (32),
+	price DECIMAL (7, 2),
+	type ENUM ('laptop', 'tablet', 'hybrid'),
+	PRIMARY KEY (base_id),
+	FOREIGN KEY (processor_id) REFERENCES PROCESSOR (processor_id),
+	FOREIGN KEY (memory_id) REFERENCES MEMORY (memory_id),
+	FOREIGN KEY (storage_id) REFERENCES STORAGE (storage_id),
+	FOREIGN KEY (os_name) REFERENCES O_SYSTEM (name)
+);
