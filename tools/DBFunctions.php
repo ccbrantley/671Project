@@ -70,4 +70,29 @@ function loginUser ($_userInfo) {
 	}
 	return $rows;
 }
+
+function getBaseProducts () {
+	include_once $_SERVER['DOCUMENT_ROOT'] . '/671Project/tools/DBConnect.php';
+	try {
+		$session = GETPDO();
+		if ($session == NULL) {
+			return $session;
+		}
+		$result = $session->query("
+			SELECT PROCESSOR.name AS 'processor_name', STORAGE.size AS 'storage_size',
+			STORAGE.type AS 'storage_type', O_SYSTEM.name AS 'operating_system',
+			MEMORY.size AS 'memory_size', BASE_SYSTEM.*
+			FROM BASE_SYSTEM, PROCESSOR, MEMORY, STORAGE, O_SYSTEM
+			WHERE BASE_SYSTEM.processor_id = PROCESSOR.processor_id AND
+			BASE_SYSTEM.memory_id = MEMORY.memory_id AND
+			BASE_SYSTEM.storage_id = STORAGE.storage_id AND
+			BASE_SYSTEM.os_name = O_SYSTEM.name
+			;
+		");
+	}
+	catch (Exception $ex) {
+		return NULL;
+	}
+	return $result->fetchAll();
+}
 ?>
