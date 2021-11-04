@@ -35,5 +35,6 @@ echo <<<EOD
 				</div>
 			</div>
 		</div>
+		<div class = 'divPage'>
 EOD;
 ?>
