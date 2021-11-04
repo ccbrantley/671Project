@@ -118,11 +118,6 @@ h1 {
 /* End Registration */
 
 /* Begin Product*/
-.productAndSearchDiv {
-	display: block;
-	height: 100%;
-	margin-top: 70px;
-}
 .searchBar {
 	display: table-cell;
 	float: left;
@@ -158,5 +153,13 @@ h1 {
 /* End Product*/
 
 /* Begin Customize*/
+
+/* End Customize*/
+
+/* Begin Customize*/
+
+.logoutDiv {
+	padding: 10px;
+}
 
 /* End Customize*/
