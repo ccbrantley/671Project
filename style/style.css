@@ -3,7 +3,6 @@ body {
 	background-color: whitesmoke;
 	margin: 0;
 }
-
 .divPage {
 	margin-top: 70px;
 }
@@ -12,25 +11,28 @@ body {
 	display: table;
 	text-align: center;
 }
+.formTable input {
+	width: 90%;
+	height: 100%;
+	padding: 10px;
+	margin: 5px 5px 5px;
+	text-align: center;
+}
 .divHeader {
 	font-size: 24px;
 	font-weight: bold;
 }
-.divRow,
-.divHeader {
-	display: table-row;
-}
 .divCell {
+	border: 1px solid black;
 	display: table-cell;
 	text-align: left;
-	min-width: 100px;
+	padding: 30px;
 }
 .divRow,
-.divCell,
 .divHeader {
-	width: 100%;
 	border: 1px solid black;
-	padding: 0px 30px 0px;
+	display: table-row;
+	width: 100%;
 }
 .disabled {
   pointer-events: none;
