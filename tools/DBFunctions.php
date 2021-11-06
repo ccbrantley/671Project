@@ -198,7 +198,11 @@ function processorToAvailableMemory ($_processorId) {
 		WHERE memory_id in (
 	";
 	$query = appendQueryClauseIn($query, $memoryIds) . ";";
-	return preparedQuery($query, $memoryIds)->fetchAll();
+	$result = preparedQuery($query, $memoryIds);
+	if (!$result) {
+		return NULL;
+	}
+	return $result->fetchAll();
 }
 function processorToAvailableStorage ($_processorId) {
 	$query = "
@@ -218,7 +222,11 @@ function processorToAvailableStorage ($_processorId) {
 		WHERE storage_id in (
 	";
 	$query = appendQueryClauseIn($query, $storageIds) . ";";
-	return preparedQuery($query, $storageIds)->fetchAll();
+	$result = preparedQuery($query, $storageIds);
+	if (!$result) {
+		return NULL;
+	}
+	return $result->fetchAll();
 }
 function processorToAvailableOS ($_processorId) {
 	$query = "
@@ -238,6 +246,10 @@ function processorToAvailableOS ($_processorId) {
 		WHERE name in (
 	";
 	$query = appendQueryClauseIn($query, $rowIds) . ";";
-	return preparedQuery($query, $rowIds)->fetchAll();
+	$result = preparedQuery($query, $rowIds);
+	if (!$result) {
+		return NULL;
+	}
+	return $result->fetchAll();
 }
 ?>
