@@ -7,6 +7,11 @@ if (isset($_POST['loginSubmit'])) {
 	if ($user !== NULL) {
 		$_SESSION['user_id'] = $user['user_id'];
 		$_SESSION['f_name'] = $user['f_name'];
+		if ($_SESSION['loginRedirect'] !== NULL) {
+			$redirect = $_SESSION['loginRedirect'];
+			$_SESSION['loginRedirect'] = NULL;
+			header($redirect);
+		}
 		$loginResponse = '<p class = "successText">';
 		$loginResponse .= 'Login was successful!</p>';
 	}
