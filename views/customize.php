@@ -1,11 +1,36 @@
 <?php
+function customizeFormAction () {
+	$_SESSION['chosen_base_id'] = $_POST['base_id'];
+	$_session['chosen_memory_id'] = $_POST['memory_id'];
+	$_SESSION['chosen_storage_id'] = $_POST['storage_id'];
+	$_SESSION['chosen_os_name'] = $_POST['os_name'];
+	if (isset($_SESSION['user_id'])) {
+		if (isset($_POST['purchase'])) {
+			header("Location: /671Project/views/purchase.php");
+		}
+		else if (isset($_POST['wishList'])) {
+			header("Location: /671Project/views/account.php");
+		}
+	}
+	else {
+		$_SESSION['loginRedirect'] = 'Location: /671Project/views/customize.php';
+		header("Location: /671Project/views/login.php");
+	}
+}
 include $_SERVER['DOCUMENT_ROOT'] . '/671Project/templates/header.php';
+if (isset($_POST['purchase']) or
+	isset($_POST['wishList'])) {
+	customizeFormAction();
+}
+if (empty($_POST['base_id'])) {
+	$_POST['base_id'] = $_SESSION['chosen_base_id'];
+}
 echo "<h1>Customize</h1>";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/671Project/tools/DBFunctions.php";
 $baseProduct = getBaseProduct($_POST['base_id'])[0];
 $baseSpecs = getbaseProductSpecs($_POST['base_id'])[0];
 echo <<<EOD
-	<form class = 'formTable' action = '$actionPage' method = 'post'>
+	<form class = 'formTable' action = '' method = 'post'>
 		<div class = "divHeader">
 			<div class = "divCell">Memory</div>
 			<div class = "divCell">Price</div>
@@ -55,6 +80,7 @@ $processorId = $baseProduct['processor_id'];
 $availableMemory = processorToAvailableMemory($processorId);
 $availableStorage = processorToAvailableStorage($processorId);
 $availableOs = processorToAvailableOS($processorId);
+
 $itemRows = array_map(NULL, $availableMemory, $availableStorage, $availableOs);
 foreach($itemRows as $row) {
 	$mem = $row[0];
