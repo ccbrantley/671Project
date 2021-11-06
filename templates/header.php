@@ -27,7 +27,6 @@ echo <<<EOD
 		<div class = "mainNavigation">
 			<a href = "/671Project/index.php">Home</a>
 			<a href = "/671Project/views/products.php">Products</a>
-			<a href = "/671Project/views/purchase.php">Purchase</a>
 			<div class = "dropDown">
 				<a class = "disabled" href = "" >Account</a>
 				<div class = "dropDownContent">
