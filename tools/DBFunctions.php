@@ -78,6 +78,37 @@ function getBaseProducts () {
 	";
 	return regularQuery($query)->fetchAll();
 }
+function getBaseProduct ($_baseId) {
+	$query = "
+		SELECT *
+		FROM BASE_SYSTEM
+		WHERE base_id = ?
+		;
+	";
+	return preparedQuery($query, array($_baseId))->fetchAll();
+}
+function getbaseProductSpecs ($_baseId) {
+	$query = "
+		SELECT
+		MEMORY.memory_id,
+		MEMORY.size AS memory_size,
+		MEMORY.price AS memory_price,
+		STORAGE.storage_id,
+		STORAGE.size AS storage_size,
+		STORAGE.type AS storage_type,
+		STORAGE.price AS storage_price,
+		O_SYSTEM.name AS os_name,
+		O_SYSTEM.price AS os_price
+		FROM BASE_SYSTEM, PROCESSOR, MEMORY, STORAGE, O_SYSTEM
+		WHERE BASE_SYSTEM.processor_id = PROCESSOR.processor_id AND
+		BASE_SYSTEM.memory_id = MEMORY.memory_id AND
+		BASE_SYSTEM.storage_id = STORAGE.storage_id AND
+		BASE_SYSTEM.os_name = O_SYSTEM.name AND
+		BASE_SYSTEM.base_id = ?
+		;
+	";
+	return preparedQuery($query, array($_baseId))->fetchAll();
+}
 function searchBaseProducts () {
 	$query = <<<EOD
 		SELECT PROCESSOR.name AS 'processor_name', STORAGE.size AS 'storage_size',
