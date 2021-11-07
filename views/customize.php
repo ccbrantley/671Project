@@ -1,32 +1,44 @@
 <?php
+$resultMessage = "";
 function customizeFormAction () {
 	$_SESSION['chosen_base_id'] = $_POST['base_id'];
-	$_session['chosen_memory_id'] = $_POST['memory_id'];
+	$_SESSION['chosen_memory_id'] = $_POST['memory_id'];
 	$_SESSION['chosen_storage_id'] = $_POST['storage_id'];
 	$_SESSION['chosen_os_name'] = $_POST['os_name'];
 	if (isset($_SESSION['user_id'])) {
 		if (isset($_POST['purchase'])) {
-			header("Location: /671Project/views/purchase.php");
+			if (productToPurchase(array($_SESSION['user_id'], $_SESSION['chosen_base_id'], 
+			$_SESSION['chosen_memory_id'], $_SESSION['chosen_storage_id'],
+			$_SESSION['chosen_os_name']))) {
+				return "<p class = 'successText'>Item successfuly purchased.</p>";
+			}
+			return "<p class = 'failedText'>Unable to purchase the item.</p>";
 		}
 		else if (isset($_POST['wishList'])) {
-			header("Location: /671Project/views/account.php");
+			if (productToWishList(array($_SESSION['user_id'], $_SESSION['chosen_base_id'],
+			$_SESSION['chosen_memory_id'], $_SESSION['chosen_storage_id'],
+			$_SESSION['chosen_os_name']))) {
+				return "<p class = 'successText'>Item successfuly added to your wishlist.</p>";
+			}
+			return "<p class = 'failedText'>Unable to add the item to your wishlist.</p>";
 		}
 	}
 	else {
 		$_SESSION['loginRedirect'] = 'Location: /671Project/views/customize.php';
 		header("Location: /671Project/views/login.php");
 	}
+	return "";
 }
 include $_SERVER['DOCUMENT_ROOT'] . '/671Project/templates/header.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . "/671Project/tools/DBFunctions.php";
 if (isset($_POST['purchase']) or
 	isset($_POST['wishList'])) {
-	customizeFormAction();
+	$resultMessage = customizeFormAction();
 }
 if (empty($_POST['base_id'])) {
 	$_POST['base_id'] = $_SESSION['chosen_base_id'];
 }
 echo "<h1>Customize</h1>";
-include_once $_SERVER['DOCUMENT_ROOT'] . "/671Project/tools/DBFunctions.php";
 $baseProduct = getBaseProduct($_POST['base_id'])[0];
 $baseSpecs = getbaseProductSpecs($_POST['base_id'])[0];
 echo <<<EOD
@@ -119,7 +131,7 @@ foreach($itemRows as $row) {
 				$osPrice
 			</div>
 			<div class = 'divCell'>
-				<input type = 'radio' name = 'os_name' value = '{$os['os_name']}'>
+				<input type = 'radio' name = 'os_name' value = '{$os['name']}'>
 			</div>
 		</div>
 	EOD;
@@ -131,6 +143,7 @@ echo <<<EOD
 		</div>
 		<input type = "hidden" name = "base_id" value = "{$_POST['base_id']}">
 	</form>
+	$resultMessage
 EOD;
 include $_SERVER['DOCUMENT_ROOT'] . '/671Project/templates/footer.php';                                                                                                                    
 ?>
