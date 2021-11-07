@@ -74,20 +74,6 @@ CREATE TABLE PROCESSOR_MEMORY (
 	FOREIGN KEY (memory_id) REFERENCES MEMORY (memory_id)
 );
 
-
-/*
-CREATE TABLE SYSTEM_CONFIG (
-	processor_id CHARACTER VARYING (64),
-	memory_id CHARACTER VARYING (64),
-	storage_id CHARACTER VARYING (64),
-	os_name CHARACTER VARYING (64),
-	FOREIGN KEY (processor_id) REFERENCES PROCESSOR (processor_id),
-	FOREIGN KEY (memory_id) REFERENCES MEMORY (memory_id),
-	FOREIGN KEY (storage_id) REFERENCES STORAGE (storage_id),
-	FOREIGN KEY (os_name) REFERENCES O_SYSTEM (name)
-);
-*/
-
 CREATE TABLE BASE_SYSTEM (
 	base_id CHARACTER VARYING (64),
 	processor_id CHARACTER VARYING (64),
@@ -104,3 +90,41 @@ CREATE TABLE BASE_SYSTEM (
 	FOREIGN KEY (storage_id) REFERENCES STORAGE (storage_id),
 	FOREIGN KEY (os_name) REFERENCES O_SYSTEM (name)
 );
+
+CREATE TABLE WISHLIST (
+	user_id INT,
+	base_id CHARACTER VARYING (64),
+	memory_id CHARACTER VARYING (64),
+	storage_id CHARACTER VARYING (64),
+	os_name CHARACTER VARYING (64),
+	FOREIGN KEY (user_id) REFERENCES CUSTOMER (user_id),
+	FOREIGN KEY (base_id) REFERENCES BASE_SYSTEM (base_id),
+	FOREIGN KEY (memory_id) REFERENCES MEMORY (memory_id),
+	FOREIGN KEY (storage_id) REFERENCES STORAGE (storage_id),
+	FOREIGN KEY (os_name) REFERENCES O_SYSTEM (name)
+);
+
+CREATE TABLE PURCHASE (
+	user_id INT,
+	base_id CHARACTER VARYING (64),
+	memory_id CHARACTER VARYING (64),
+	storage_id CHARACTER VARYING (64),
+	os_name CHARACTER VARYING (64),
+	price DECIMAL (7, 2),
+	FOREIGN KEY (user_id) REFERENCES CUSTOMER (user_id),
+	FOREIGN KEY (base_id) REFERENCES BASE_SYSTEM (base_id),
+	FOREIGN KEY (memory_id) REFERENCES MEMORY (memory_id),
+	FOREIGN KEY (storage_id) REFERENCES STORAGE (storage_id),
+	FOREIGN KEY (os_name) REFERENCES O_SYSTEM (name)
+);
+
+
+
+
+
+
+
+
+
+
+
