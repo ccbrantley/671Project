@@ -90,6 +90,7 @@ function getBaseProduct ($_baseId) {
 function getbaseProductSpecs ($_baseId) {
 	$query = "
 		SELECT
+		BASE_SYSTEM.price AS base_price,
 		MEMORY.memory_id,
 		MEMORY.size AS memory_size,
 		MEMORY.price AS memory_price,
@@ -230,7 +231,7 @@ function processorToAvailableStorage ($_processorId) {
 }
 function processorToAvailableOS ($_processorId) {
 	$query = "
-		SELECT os_name
+		SELECT *
 		FROM PROCESSOR_O_SYSTEM
 		WHERE processor_id = ?
 		;
@@ -251,5 +252,57 @@ function processorToAvailableOS ($_processorId) {
 		return NULL;
 	}
 	return $result->fetchAll();
+}
+function calculateCustomizationPrice ($_base_id, $_memory_id, $_storage_id, $_os_name) {
+	$result = getbaseProductSpecs($_POST['base_id']);
+	if (!$result) {
+		return False;
+	}
+	$baseSpecs = $result[0];
+	$query = "SELECT * FROM MEMORY WHERE memory_id = ?;";
+	$result = preparedQuery($query, array($_memory_id));
+	if (!$result) {
+		return False;
+	}
+	$memoryPrice = $result->fetchAll()[0]['price'] - $baseSpecs['memory_price'];
+	$query = "SELECT * FROM STORAGE WHERE storage_id = ?;";
+	$result = preparedQuery($query, array($_storage_id));
+	if (!$result) {
+		return False;
+	}
+	$storagePrice = $result->fetchAll()[0]['price'] - $baseSpecs['storage_price'];
+	$query = "SELECT * FROM O_SYSTEM WHERE name = ?;";
+	$result = preparedQuery($query, array($_os_name));
+	if (!$result) {
+		return False;
+	}
+	$osPrice = $result->fetchAll()[0]['price'] - $baseSpecs['os_price'];
+	$totalChange = abs($memoryPrice) + abs($storagePrice) + abs($osPrice);
+	return $baseSpecs['base_price'] - $totalChange;
+}
+function productToPurchase ($_args) {
+	array_push($_args, calculateCustomizationPrice($_args[1], $_args[2], $_args[3], $_args[4]));
+	$query = "
+		INSERT INTO PURCHASE (user_id, base_id, memory_id, storage_id, os_name, price) VALUES
+		(?, ?, ?, ?, ?, ?)
+		;
+	";
+	$result = preparedQuery($query, $_args);
+	if (!$result) {
+		return False;
+	}
+	return True;
+}
+function productToWishList ($_arguments) {
+	$query = "
+		INSERT INTO WISHLIST (user_id, base_id, memory_id, storage_id, os_name) VALUES
+		(?, ?, ?, ?, ?)
+		;
+	";
+	$result = preparedQuery($query, $_arguments);
+	if (!$result) {
+		return False;
+	}
+	return True;
 }
 ?>
