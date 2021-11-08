@@ -6,6 +6,9 @@ body {
 .headerPadding {
 	padding: 10px 10px 0px;
 }
+.pPadding {
+	padding: 20px 10px 0px;
+}
 .divPage {
 	margin-top: 70px;
 }
@@ -30,6 +33,7 @@ body {
 	display: flex;
 	text-align: center;
 	flex-direction: column;
+	padding: 0px 0px 100px;
 }
 .divTable {
 	overflow: hidden;
