@@ -3,6 +3,9 @@ body {
 	background-color: whitesmoke;
 	margin: 0;
 }
+.headerPadding {
+	padding: 10px 10px 0px;
+}
 .divPage {
 	margin-top: 70px;
 }
@@ -17,6 +20,33 @@ body {
 	padding: 10px;
 	margin: 5px 5px 5px;
 	text-align: center;
+}
+.divTableHeight {
+	max-height: 450px;
+	max-width: 80%;
+	overflow: auto;
+	margin-left: auto;
+	margin-right: auto;
+	display: flex;
+	text-align: center;
+	flex-direction: column;
+}
+.divTable {
+	overflow: hidden;
+	display: table;
+	text-align: left;
+	padding: 10px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.divTableRow,
+.divTableHeader {
+	display: table-row;
+}
+.divTableCell {
+	display: table-cell;
+	padding: 10px;
+	border: 1px solid black;
 }
 .divHeader {
 	font-size: 24px;
