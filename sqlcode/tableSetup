@@ -105,12 +105,16 @@ CREATE TABLE WISHLIST (
 );
 
 CREATE TABLE PURCHASE (
+	purchase_id INT AUTO_INCREMENT NOT NULL,
 	user_id INT,
 	base_id CHARACTER VARYING (64),
 	memory_id CHARACTER VARYING (64),
 	storage_id CHARACTER VARYING (64),
 	os_name CHARACTER VARYING (64),
 	price DECIMAL (7, 2),
+	status ENUM ('processed', 'unprocessed'),
+	date DATE,
+	PRIMARY KEY (purchase_id),
 	FOREIGN KEY (user_id) REFERENCES CUSTOMER (user_id),
 	FOREIGN KEY (base_id) REFERENCES BASE_SYSTEM (base_id),
 	FOREIGN KEY (memory_id) REFERENCES MEMORY (memory_id),
