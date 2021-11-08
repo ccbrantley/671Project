@@ -254,7 +254,7 @@ function processorToAvailableOS ($_processorId) {
 	return $result->fetchAll();
 }
 function calculateCustomizationPrice ($_base_id, $_memory_id, $_storage_id, $_os_name) {
-	$result = getbaseProductSpecs($_POST['base_id']);
+	$result = getbaseProductSpecs($_base_id);
 	if (!$result) {
 		return False;
 	}
