@@ -278,13 +278,17 @@ function calculateCustomizationPrice ($_base_id, $_memory_id, $_storage_id, $_os
 	}
 	$osPrice = $result->fetchAll()[0]['price'] - $baseSpecs['os_price'];
 	$totalChange = abs($memoryPrice) + abs($storagePrice) + abs($osPrice);
-	return $baseSpecs['base_price'] - $totalChange;
+	return number_format($baseSpecs['base_price'] - $totalChange, 2);
 }
 function productToPurchase ($_args) {
 	array_push($_args, calculateCustomizationPrice($_args[1], $_args[2], $_args[3], $_args[4]));
+	array_push($_args, 'unprocessed');
+	array_push($_args, date("Y-m-d"));  
 	$query = "
-		INSERT INTO PURCHASE (user_id, base_id, memory_id, storage_id, os_name, price) VALUES
-		(?, ?, ?, ?, ?, ?)
+		INSERT INTO PURCHASE (user_id, base_id, memory_id,
+		storage_id, os_name, price, status, date
+		) VALUES
+		(?, ?, ?, ?, ?, ?, ?, ?)
 		;
 	";
 	$result = preparedQuery($query, $_args);
@@ -304,5 +308,12 @@ function productToWishList ($_arguments) {
 		return False;
 	}
 	return True;
+}
+function getPurchases ($_userId) {
+	$query = "
+		SELECT * FROM PURCHASE WHERE user_id = ?;
+	";
+	$result = preparedQuery($query, array($_userId));
+	return $result;
 }
 ?>
