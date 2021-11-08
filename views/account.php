@@ -2,7 +2,18 @@
 include $_SERVER['DOCUMENT_ROOT'] . '/671Project/templates/header.php';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/671Project/tools/DBFunctions.php';
 if (isset($_POST['wishListPurchase'])) {
-	echo 'Purchasing: ' . $_POST['wishlist_id'];
+	$item = preparedQuery("SELECT * FROM WISHLIST WHERE wishlist_id = ?;", array($_POST['wishlist_id']));
+	$item = $item->fetchAll()[0];
+	$result = preparedQuery("DELETE FROM WISHLIST WHERE wishlist_id = ?;", array($item['wishlist_id']));
+	$result = productToPurchase(array($_SESSION['user_id'], $item['base_id'], $item['memory_id'],
+							$item['storage_id'], $item['os_name']));
+	if (!$result) {
+		$_SESSION['purchaseStatus'] = False;
+	}
+	else {
+		$_SESSION['purchaseStatus'] = True;
+	}
+	header("Location: /671Project/views/purchase.php");
 }
 function displayPurchases () {
 	$purchases = getPurchases($_SESSION['user_id']);
