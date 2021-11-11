@@ -1,7 +1,7 @@
 <?php
 include $_SERVER['DOCUMENT_ROOT'] . '/671Project/templates/header.php';
-include $_SERVER['DOCUMENT_ROOT'] . '/671Project/templates/footer.php';
-$registrationResponse = "";
+
+$registrationResponse = NULL;
 if (isset($_POST['registrationSubmit'])) {
 	include_once $_SERVER['DOCUMENT_ROOT'] . '/671Project/tools/DBFunctions.php';
 	$userNameValid = uniqueUserName($_POST['userName']);
@@ -19,22 +19,18 @@ if (isset($_POST['registrationSubmit'])) {
 			$_POST['countryAddress'],
 			$_POST['creditCard'])) !=
 			NULL) {
-				$registrationResponse = "<p class = 'successText'>";
-				$registrationResponse .= "Registration was successful!</p>";
+				$registrationResponse = "<p class = 'successText'>Registration was successful!</p>";
 			}
 			else {
-				$registrationResponse = "<p class = 'failedText'>";
-				$registrationResponse .= "Registration was not successful.</p>";
+				$registrationResponse = "<p class = 'failedText'>Registration was not successful.</p>";
 			}
 		}
 		else {
-			$registrationResponse = "<p class = 'failedText'>";
-			$registrationResponse .= "Username is already taken, please choose a different one.</p>";
+			$registrationResponse = "<p class = 'failedText'>Username is already taken, please choose a different one.</p>";
 		}
 	}
 	else {
-		$registrationResponse = "<p class = 'failedText'>";
-		$registrationResponse = "Registration was not successful.</p>";
+		$registrationResponse = "<p class = 'failedText'>Registration was not successful.</p>";
 	}
 }
 echo <<<EOD
@@ -86,6 +82,7 @@ echo <<<EOD
 			<input type = "submit" name = "registrationSubmit" value = "Register">
 		</div>
 	</form>
-	$registrationResponse
 EOD;
+if ($registrationResponse) { echo $registrationResponse; }
+include $_SERVER['DOCUMENT_ROOT'] . '/671Project/templates/footer.php';
 ?>
