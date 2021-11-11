@@ -1,6 +1,5 @@
 <?php
 include $_SERVER['DOCUMENT_ROOT'] . '/671Project/templates/header.php';
-
 $registrationResponse = NULL;
 if (isset($_POST['registrationSubmit'])) {
 	include_once $_SERVER['DOCUMENT_ROOT'] . '/671Project/tools/DBFunctions.php';
