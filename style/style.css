@@ -24,6 +24,25 @@ body {
 	margin: 5px 5px 5px;
 	text-align: center;
 }
+.divHeader {
+	font-size: 24px;
+	font-weight: bold;
+}
+.divCell {
+	border: 1px solid black;
+	display: table-cell;
+	text-align: left;
+	padding: 30px;
+}
+.divRow {
+	font-size: 15px;
+}
+.divRow,
+.divHeader {
+	border: 1px solid black;
+	display: table-row;
+	width: 100%;
+}
 .divTableHeight {
 	max-height: 450px;
 	max-width: 80%;
@@ -51,22 +70,6 @@ body {
 	display: table-cell;
 	padding: 10px;
 	border: 1px solid black;
-}
-.divHeader {
-	font-size: 24px;
-	font-weight: bold;
-}
-.divCell {
-	border: 1px solid black;
-	display: table-cell;
-	text-align: left;
-	padding: 30px;
-}
-.divRow,
-.divHeader {
-	border: 1px solid black;
-	display: table-row;
-	width: 100%;
 }
 .disabled {
   pointer-events: none;
