@@ -140,6 +140,7 @@ body {
 /* Begin Registration */
 
 h1 {
+	padding: 10px 0px 0px;
 	text-align: center;
 }
 .successText, .failedText {
