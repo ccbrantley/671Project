@@ -122,28 +122,28 @@ function searchBaseProducts () {
 		BASE_SYSTEM.os_name = O_SYSTEM.name
 	EOD;
 	$argumentArray = array();
-	if (!empty($_POST['maxPrice'])) {
-		$argumentArray[] = $_POST['maxPrice'];
+	if (!empty($_GET['maxPrice'])) {
+		$argumentArray[] = $_GET['maxPrice'];
 		$query .= "\nAND BASE_SYSTEM.price <= ?";
 	}
-	if (!empty($_POST['maxWeight'])) {
-		$argumentArray[] = $_POST['maxWeight'];
+	if (!empty($_GET['maxWeight'])) {
+		$argumentArray[] = $_GET['maxWeight'];
 		$query .= "\nAND BASE_SYSTEM.weight <= ?";
 	}
-	if (!empty($_POST['size'])) {
-		$argumentArray[] = $_POST['size'];
+	if (!empty($_GET['size'])) {
+		$argumentArray[] = $_GET['size'];
 		$query .= "\nAND BASE_SYSTEM.size = ?";
 	}
 	$typeCount = 0;
-	if (!empty($_POST['laptops'])) {
+	if (!empty($_GET['laptops'])) {
 		$argumentArray[] = 'laptop';
 		$typeCount += 1;
 	}
-	if (!empty($_POST['tablets'])) {
+	if (!empty($_GET['tablets'])) {
 		$argumentArray[] = 'tablet';
 		$typeCount += 1;
 	}
-	if (!empty($_POST['hybrid'] !== NULL)) {
+	if (!empty($_GET['hybrid'] !== NULL)) {
 		$argumentArray[] = 'hybrid';
 		$typeCount += 1;
 	}
