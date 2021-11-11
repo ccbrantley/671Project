@@ -171,6 +171,10 @@ function baseIdToProcessorId ($_baseId) {
 	return preparedQuery($query, array($_baseId))->fetchAll();
 }
 function appendQueryClauseIn ($_baseQuery, $_array) {
+	if (sizeof($_array) == 0) {
+		$_baseQuery .= "NULL);";
+		return $_baseQuery;
+	}
 	for ($i = 0; $i < sizeof($_array); $i++) {
 		if (($i + 1) == sizeof($_array)) {
 			$_baseQuery .= "?)";
