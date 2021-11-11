@@ -1,21 +1,5 @@
 <?php
 session_start();
-$accountDropDown = "";
-
-if (isset($_SESSION['user_id'])) {
-	$shortFirstName = substr($_SESSION['f_name'], 0, 10) . '...';
-	$accountDropDown = "
-		<a class = 'disabled firstNameDisplay' href = '' >Welcome back $shortFirstName</a>
-		<a href = '/671Project/views/logout.php'>Logout</a>
-		<a href = '/671Project/views/account.php'>Account</a>
-	";
-}
-else {
-	$accountDropDown = '
-		<a href = "/671Project/views/login.php">Login</a>
-		<a href = "/671Project/views/register.php">Register</a>
-	';
-}
 echo <<<EOD
 <!DOCTYPE HTML>
 <html>
@@ -30,7 +14,23 @@ echo <<<EOD
 			<div class = "dropDown">
 				<a class = "disabled" href = "" >Account</a>
 				<div class = "dropDownContent">
-					$accountDropDown
+EOD;
+if (isset($_SESSION['user_id'])) {
+	$displayName = $_SESSION['f_name'];
+	if (strlen($displayName) > 10) { $displayName = substr($displayName, 0, 10) . '...'; }
+	echo <<<EOD
+		<a class = 'disabled firstNameDisplay' href = '' >Welcome back $displayName</a>
+		<a href = '/671Project/views/logout.php'>Logout</a>
+		<a href = '/671Project/views/account.php'>Account</a>
+	EOD;
+}
+else {
+	echo <<<EOD
+		<a href = "/671Project/views/login.php">Login</a>
+		<a href = "/671Project/views/register.php">Register</a>
+	EOD;
+}
+echo <<<EOD
 				</div>
 			</div>
 		</div>
