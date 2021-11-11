@@ -19,7 +19,7 @@ if (isset($_SESSION['user_id'])) {
 	$displayName = $_SESSION['f_name'];
 	if (strlen($displayName) > 10) { $displayName = substr($displayName, 0, 10) . '...'; }
 	echo <<<EOD
-		<a class = 'disabled firstNameDisplay' href = '' >Welcome back $displayName</a>
+		<a class = 'disabled firstNameDisplay' href = '' >Welcome back $displayName.</a>
 		<a href = '/671Project/views/logout.php'>Logout</a>
 		<a href = '/671Project/views/account.php'>Account</a>
 	EOD;
