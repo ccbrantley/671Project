@@ -1,55 +1,46 @@
 <?php
-function productTableDisplay ($_arguments) {
-	include_once $_SERVER['DOCUMENT_ROOT'] . '/671Project/tools/DBFunctions.php';
-	$actionPage = '/671Project/views/customize.php';
-	$table .= "<form class = 'formTable' action = '$actionPage' method = 'post'>";
-	$table .= '<div class = "divHeader">';
-	$table .= '<div class = "divCell">Processor</div>';
-	$table .= '<div class = "divCell">Memory</div>';
-	$table .= '<div class = "divCell">Storage</div>';
-	$table .= '<div class = "divCell">OS</div>';
-	$table .= '<div class = "divCell">Specifications</div>';
-	$table .= '<div class = "divCell">Price</div>';
-	$table .= '<div class = "divCell">';
-	$table .= "<input type = 'submit' name = 'customize' value = 'Customize'>";
-	$table .= '</div>';
-	$table .= "</div>";
-	foreach ($_arguments as $row) {
-		$table .= '<div class = "divRow">';
-		$table .= "<div class = 'divCell'>{$row['processor_name']}</div>";
-		$table .= "<div class = 'divCell'>{$row['memory_size']} gb </div>";
-		$table .= "<div class = 'divCell'><ul>";
-		$table .= "<li>{$row['storage_size']} gb</li>";
-		$table .= "<li>{$row['storage_type']}</li>";
-		$table .= "</ul></div>";
-		$table .= "<div class = 'divCell'>{$row['operating_system']}</div>";
-		$table .= "<div class = 'divCell'><ul>";
-		$table .= "<li>". intval($row['weight']) . " grams</li>";
-		$table .= "<li>" . $row['size'] . " inches</li>";
-		$table .= "<li>{$row['type']}</li>";
-		$table .= "</ul></div>";
-		$table .= "<div class = 'divCell'>\${$row['price']}</div>";
-		$table .= "<div class = 'divCell'>";
-		$table .= "<input type = 'radio' name = 'base_id' value = '{$row['base_id']}'>";
-		$table .= "</div>";
-		$table .= '</div>';
-	}
-	$table .= "</form>";
-	return $table;
-}
-function baseProductTableDisplay () {
-	include_once $_SERVER['DOCUMENT_ROOT'] . '/671Project/tools/DBFunctions.php';
-	return productTableDisplay(getBaseProducts());
-}
-function searchBaseProductTableDisplay () {
-	include_once $_SERVER['DOCUMENT_ROOT'] . '/671Project/tools/DBFunctions.php';
-	return productTableDisplay(searchBaseProducts());
-}
 include $_SERVER['DOCUMENT_ROOT'] . '/671Project/templates/header.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/671Project/tools/DBFunctions.php';
+function productTableDisplay ($_arguments) {
+	echo <<<EOD
+	<form class = 'formTable' action = '/671Project/views/customize.php' method = 'post'><div class = "divHeader">
+		<div class = "divHeader">
+			<div class = "divCell">Processor</div>
+			<div class = "divCell">Memory</div>
+			<div class = "divCell">Storage</div>
+			<div class = "divCell">OS</div>
+			<div class = "divCell">Specifications</div>
+			<div class = "divCell">Price</div>
+			<div class = "divCell"><input type = 'submit' name = 'customize' value = 'Customize'></div>
+		</div>
+	EOD;
+	foreach ($_arguments as $row) {
+		$weight = intval($row['weight']);
+		echo <<<EOD
+		<div class = "divRow">
+			<div class = 'divCell'>{$row['processor_name']}</div>
+			<div class = 'divCell'>{$row['memory_size']} gb </div>
+			<div class = 'divCell'><ul>
+				<li>{$row['storage_size']} gb</li>
+				<li>{$row['storage_type']}</li>
+			</ul></div>
+			<div class = 'divCell'>{$row['operating_system']}</div>
+			<div class = 'divCell'><ul>
+				<li>$weight grams</li>
+				<li>{$row['size']} inches</li>
+				<li>{$row['type']}</li>
+			</ul></div>
+			<div class = 'divCell'>{$row['price']}</div>
+			<div class = 'divCell'><input type = 'radio' name = 'base_id' value = '{$row['base_id']}'></div>
+		</div>
+		EOD;
+	}
+	echo "</form>";
+}
 echo <<<EOD
 <div class = "productAndSearchDiv">
 	<div class = "searchBar">
-		<form class = "standardForm searchForm" action = "" method = "post">
+		<form class = "standardForm searchForm" action = "" method = "get">
 			<div class = "searchBarDiv">
 				<p>
 					<label for "maxPrice">Max Price:</label>
@@ -83,11 +74,11 @@ echo <<<EOD
 	</div>
 	<div class = "productDisplay">
 EOD;
-if (!isset($_POST['search'])) {
-	echo baseProductTableDisplay();
+if (!isset($_GET['search'])) {
+	productTableDisplay(getBaseProducts());
 }
 else {
-	echo searchBaseProductTableDisplay();
+	productTableDisplay(searchBaseProducts());
 }
 echo <<<EOD
 	</div>
