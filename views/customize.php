@@ -5,7 +5,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . "/671Project/tools/DBFunctions.php";
 if (isset($_POST['purchase'])) {
 	if (productToPurchase(array($_SESSION['user_id'], $_POST['base_id'], 
 								$_POST['memory_id'], $_POST['storage_id'],
-								$_POST['chosen_os_name'])))
+								$_POST['os_name'])))
 	{
 		$_SESSION['purchase_status'] = True;
 	}
