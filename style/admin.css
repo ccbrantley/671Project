@@ -8,6 +8,11 @@ body {
 h1 {
 	text-align: center;
 }
+div {
+	display: inline-block;
+	margin-left: auto;
+	margin-right: auto;
+}
 .adminNavigation {
 	background-color: #E1523D;
 	display: flex;
@@ -48,7 +53,10 @@ h1 {
 	background-color: whitesmoke;
 	display: inline-block;
 	border: 3px solid black;
-	margin: 5px;
+	margin: 3px;
+}
+form {
+	margin: 20px;
 }
 form div {
 	display: table;
@@ -64,11 +72,11 @@ form div input[type = submit] {
 	padding: 10px;
 	text-align: center;
 }
-form div input[type = submit] {
+input[type = submit] {
 	background-color: #41C1AC;
 	border: 1px solid black;
 }
-form div input[type = submit]:hover {
+input[type = submit]:hover {
 	background-color: #F3F2F8;
 }
 form div label,
@@ -91,4 +99,29 @@ form input[type = password] {
 	border-bottom: 5px solid black;
 	min-height: 100px;
 	width: 100%;
+}
+.divTable {
+	display: table;
+	margin: 20px;
+}
+.divHeader {
+	display: table-row;
+	font-weight: bold;
+	font-size: 24px;
+}
+.divHeader .divCell {
+	background-color: #41C1AC;
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+}
+.divRow {
+	display: table-row;
+}
+.divCell {
+	display: table-cell;
+	padding: 5px;
+	border: 0px 1px 0px solid black;
+	border-left: 1px solid black;
+	border-right: 1px solid black;
+	border-bottom: 1px dotted black;
 }
