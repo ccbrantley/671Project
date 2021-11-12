@@ -18,4 +18,17 @@ function preparedQuery ($_query, $_arguments) {
 	if (!$result) { return NULL; }
 	return $result->fetchAll();
 }
+function regularQuery ($_query) {
+	include_once $_SERVER['DOCUMENT_ROOT'] . '/671Project/tools/DBConnect.php';
+	try {
+		$session = GETPDO();
+		if ($session == NULL) { return $session; }
+		$result = $session->query($_query);
+	}
+	catch (Exception $ex) {
+		return NULL;
+	}
+	if (!$result) { return NULL; }
+	return $result->fetchAll();
+}
 ?>
