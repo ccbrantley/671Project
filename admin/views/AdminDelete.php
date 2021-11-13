@@ -54,6 +54,7 @@ if (isset($_POST['tableInput'])) {
 	echo <<<EOD
 	<div class = "loginDiv">
 	<div class = "loginBorder">
+	<h1>{$tables[$_POST['tableSelection']]['displayName']}</h1>
 	<form method = "post" action = "/671Project/admin/views/AdminDelete.php">
 		<div>
 	EOD;
