@@ -5,7 +5,7 @@ function loginAdmin ($_username, $_password) {
 	$result = preparedQuery ($query, [$_username, $_password]);
 	return (!$result) ? NULL : $result[0];
 }
-function preparedQuery ($_query, $_arguments, $delete = False) {
+function preparedQuery ($_query, $_arguments, $rowCount = False) {
 	try {
 		$session = GETPDO();
 		if ($session == NULL) { return NULL; }
@@ -17,7 +17,7 @@ function preparedQuery ($_query, $_arguments, $delete = False) {
 		return NULL;
 	}
 	if (!$result) { return NULL; }
-	if ($delete) { return $result->rowCount(); }
+	if ($rowCount) { return $result->rowCount(); }
 	return $result->fetchAll();
 }
 function regularQuery ($_query) {
