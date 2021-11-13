@@ -55,6 +55,7 @@ function displayPurchases () {
 }
 function displayWishlist () {
 	$wishList = preparedQuery("SELECT * FROM WISHLIST WHERE user_id = ?;", array($_SESSION['user_id']));
+	$table = "";
 	foreach($wishList->fetchAll() as $item) {
 		$base_system = preparedQuery("SELECT * FROM BASE_SYSTEM WHERE base_id = ?;", array($item['base_id']));
 		$base_system = $base_system->fetchAll()[0];
@@ -67,7 +68,7 @@ function displayWishlist () {
 		$os = preparedQuery("SELECT * FROM O_SYSTEM WHERE name = ?;", array($item['os_name']));
 		$os = $os->fetchAll()[0];
 		$base_system['weight'] = intval($base_system['weight']);
-		echo <<<EOD
+		$table .="
 			<div class = 'divTableRow'>
 				<div class = 'divTableCell'>{$proc['name']}</div>
 				<div class = 'divTableCell'>{$mem['size']} gb</div>
@@ -84,8 +85,9 @@ function displayWishlist () {
 					<input type = 'radio' name = 'wishlist_id' value = '{$item['wishlist_id']}'>
 				</div>
 			</div>
-		EOD;
+		";
 	}
+	return $table;
 }
 echo <<<EOD
 <h1 class = "headerPadding">Purchases</h1>
@@ -116,11 +118,23 @@ echo <<<EOD
 			<div class = 'divTableCell'>OS</div>
 			<div class = 'divTableCell'>Specifications</div>
 			<div class = 'divTableCell'>
+
+EOD;
+$table = displayWishList();
+if ($table != NULL) {
+	echo <<<EOD
 				<input type = "submit" name = 'wishListPurchase' value = "Purchase">
 			</div>
 		</div>
-EOD;
-displayWishList();
+		$table
+	EOD;
+}
+else {
+	echo <<<EOD
+			</div>
+	</div>
+	EOD;
+}
 echo <<<EOD
 	</form>
 </div>
