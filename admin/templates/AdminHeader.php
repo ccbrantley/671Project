@@ -22,11 +22,15 @@ if (isset($_SESSION['admin_id'])) {
 	EOD;
 }
 else {
-	echo <<<EOD
-		<div class = "adminNavigation">
-			<a href = "/671Project/admin/views/AdminLogin.php">Login</a>
-		</div>
-	EOD;
+	if (end(explode("/", $_SERVER['SCRIPT_FILENAME'])) != "AdminLogin.php") {
+		header("Location: /671Project/admin/views/AdminLogin.php");
+	}
+	else {
+		echo <<<EOD
+			<div class = "adminNavigation">
+			</div>
+		EOD;
+	}
 }
 echo "<div class = 'lessBlankSpace'></div>";
 ?>
