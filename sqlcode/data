@@ -1,3 +1,7 @@
+INSERT INTO ADMIN (username, password) VALUES
+('admin', 'password')
+;
+
 INSERT INTO STORAGE VALUES
 ('9488', 64, 16, 40.99, 'hdd'),
 ('2924', 128, 67, 60.99, 'hdd'),
