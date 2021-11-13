@@ -1,7 +1,17 @@
+:root {
+	/*
+	--primary-color: #E1523D;
+	--secondary-color: #41C1AC;
+	--tertiary-color: #F3F2F8;
+	*/
+	--primary-color: #BF400A;
+	--secondary-color: #3E7FA3;
+	--tertiary-color: whitesmoke;
+}
 body {
 	display: flex;
 	flex-direction: column;
-	background-color: whitesmoke;
+	background-color: AliceBlue;
 	margin: 0;
 	min-height: 100vh;
 }
@@ -14,7 +24,7 @@ div {
 	margin-right: auto;
 }
 .adminNavigation {
-	background-color: #E1523D;
+	background-color: var(--primary-color);
 	display: flex;
 	border-top: 5px solid black;
 	border-bottom: 5px solid black;
@@ -22,9 +32,10 @@ div {
 	margin-right: auto;
 	width: 100%;
 	justify-content: center;
+	min-height: 100px;
 }
 .adminNavigation a {
-	background-color: #41C1AC;
+	background-color: var(--secondary-color);
 	border: 1px solid black;
 	color: black;
 	font-size: 24px;
@@ -32,7 +43,7 @@ div {
 	margin: 20px 5px 20px;
 }
 .adminNavigation a:hover {
-	background-color: #F3F2F8;
+	background-color: var(--tertiary-color);
 }
 .successText, .failedText {
 	text-align: center;
@@ -44,7 +55,7 @@ div {
 	color: red;
 }
 .loginDiv {
-	background-color: #E1523D;
+	background-color: var(--primary-color);
 	border: 3px solid black;
 	display: inline-block;
 	margin: auto;
@@ -73,11 +84,11 @@ form div input[type = submit] {
 	text-align: center;
 }
 input[type = submit] {
-	background-color: #41C1AC;
+	background-color: var(--secondary-color);
 	border: 1px solid black;
 }
 input[type = submit]:hover {
-	background-color: #F3F2F8;
+	background-color: var(--tertiary-color);
 }
 form div label,
 form input[type = text],
@@ -94,7 +105,7 @@ form input[type = password] {
 	flex-grow: 1;
 }
 .footer {
-	background-color: #E1523D;
+	background-color: var(--primary-color);
 	border-top: 5px solid black;
 	border-bottom: 5px solid black;
 	min-height: 100px;
@@ -110,7 +121,7 @@ form input[type = password] {
 	font-size: 24px;
 }
 .divHeader .divCell {
-	background-color: #41C1AC;
+	background-color: var(--secondary-color);
 	border-top: 1px solid black;
 	border-bottom: 1px solid black;
 }
