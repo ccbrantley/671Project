@@ -103,6 +103,7 @@ form input[type = password] {
 }
 .blankSpace {
 	flex-grow: 1;
+	padding: 10px;
 }
 .footer {
 	background-color: var(--primary-color);
