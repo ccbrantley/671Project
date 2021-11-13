@@ -7,12 +7,12 @@ if (isset($_POST['purchase'])) {
 								$_POST['memory_id'], $_POST['storage_id'],
 								$_POST['os_name'])))
 	{
-		$_SESSION['purchase_status'] = True;
+		$_SESSION['purchaseStatus'] = True;
 	}
 	else {
-		$_SESSION['purchase_status'] = False;
+		$_SESSION['purchaseStatus'] = False;
 	}
-	header("Location: /671Project/views/customizeMessage.php");
+	header("Location: /671Project/views/purchase.php");
 }
 else if (isset($_POST['wishList'])) {
 	if (productToWishList(array($_SESSION['user_id'], $_POST['base_id'],
@@ -25,7 +25,7 @@ else if (isset($_POST['wishList'])) {
 	else {
 		$_SESSION['wishlist_status'] = False;
 	}
-	header("Location: /671Project/views/customizeMessage.php");
+	header("Location: /671Project/views/wishlist.php");
 }
 $baseSpecs = getbaseProductSpecs($_POST['base_id'])[0];
 echo <<<EOD
