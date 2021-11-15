@@ -103,6 +103,7 @@ form input[type = password] {
 }
 .lessBlankSpace {
 	flex-grow: .5;
+	padding: 10px;
 }
 .blankSpace {
 	flex-grow: 1;
@@ -118,6 +119,8 @@ form input[type = password] {
 .divTable {
 	display: table;
 	margin: 20px;
+	margin-left: auto;
+	margin-right: auto;
 }
 .divHeader {
 	display: table-row;
@@ -139,4 +142,18 @@ form input[type = password] {
 	border-left: 1px solid black;
 	border-right: 1px solid black;
 	border-bottom: 1px dotted black;
+}
+.salesData {
+	display: flex;
+	flex-direction: row;
+	padding-bottom: 50px;
+	margin-left: 25%;
+}
+.salesDisplay {
+	padding-left: 50px;
+	max-height: 300px;
+	overflow: auto;
+	margin-top: auto;
+	margin-bottom: auto;
+	min-width: 200px;
 }
