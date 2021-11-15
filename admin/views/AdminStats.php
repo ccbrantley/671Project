@@ -255,5 +255,8 @@ if (isset($_POST['rangedSalesSubmit'])) {
 		EOD;
 	}
 }
+else {
+	echo "</div>";
+}
 include $_SERVER['DOCUMENT_ROOT'] . '/671Project/admin/templates/AdminFooter.php';
 ?>
