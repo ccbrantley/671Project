@@ -2,6 +2,10 @@ INSERT INTO ADMIN (username, password) VALUES
 ('admin', 'password')
 ;
 
+INSERT INTO CUSTOMER (username, password, f_name, l_name, street, city, zip, state, country, credit_card) VALUES
+('username', 'password', 'f_name', 'l_name', 'street', 'city', '27305', 'NC', 'USA', '5588585858585')
+;
+
 INSERT INTO STORAGE VALUES
 ('9488', 64, 16, 40.99, 'hdd'),
 ('2924', 128, 67, 60.99, 'hdd'),
@@ -39,7 +43,7 @@ INSERT INTO O_SYSTEM VALUES
 
 INSERT INTO MEMORY VALUES
 ('8932', 4, 24, 20.99),
-('4893', 8, 0, 50.99),
+('4893', 8, 3, 50.99),
 ('6842', 12, 25, 60.99),
 ('6315', 16, 71, 80.99),
 ('7650', 32, 32, 120.99),
@@ -66,7 +70,7 @@ INSERT INTO PROCESSOR VALUES
 ('2133', 'qualcomm 2807', 83, 191.12),
 ('1247', 'qualcomm 3786', 83, 78.68),
 ('8637', 'qualcomm 7387', 97, 186.10),
-('2199', 'apple 8937', 10, 164.49),
+('2199', 'apple 8937', 2, 164.49),
 ('3111', 'apple 6550', 92, 62.81),
 ('6999', 'apple 1253', 81, 96.22),
 ('6506', 'apple 1628', 77, 98.96),
@@ -79,6 +83,14 @@ INSERT INTO BASE_SYSTEM VALUES
 ('7536', '7588', '0082', '9481', 'Ubuntu', 4060.00, 18, 500.99, 'laptop'),
 ('4360', '8184', '7650', '3311', 'Windows 10', 5050.00, 18, 848.99, 'laptop'),
 ('2677', '4096', '8932', '9488', 'Chrome OS', 1020.00, 16, 848.99, 'hybrid')
+;
+
+INSERT INTO PURCHASE (user_id, base_id, memory_id, storage_id, os_name, price, status, date) VALUES
+('1', '6278', '6893', '1358', 'iOS', '307.00', 'unprocessed', '2021/10/20'),
+('1', '6278', '6893', '1358', 'iOS', '307.00', 'unprocessed', '2021/09/20'),
+('1', '6278', '6893', '1358', 'iOS', '307.00', 'unprocessed', '2021/08/20'),
+('1', '6278', '6893', '1358', 'iOS', '307.00', 'unprocessed', '2021/07/20'),
+('1', '6278', '6893', '1358', 'iOS', '307.00', 'unprocessed', '2021/06/20')
 ;
 
 INSERT INTO PROCESSOR_STORAGE VALUES
