@@ -17,6 +17,7 @@ if (isset($_SESSION['admin_id'])) {
 			<a href = "/671Project/admin/views/AdminUpdate.php">Update</a>
 			<a href = "/671Project/admin/views/AdminDelete.php">Delete</a>
 			<a href = "/671Project/admin/views/AdminStats.php">Statistics</a>
+			<a href = "/671Project/admin/views/AdminProcessPurchase.php">Process Purchase</a>
 			<a href = "/671Project/admin/views/AdminLogout.php">Logout</a>
 		</div>
 	EOD;
