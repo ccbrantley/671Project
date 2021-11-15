@@ -28,6 +28,15 @@ else if (isset($_SESSION['update_query_result'])) {
 	}
 	unset($_SESSION['update_query_result']);
 }
+else if (isset($_SESSION['process_purchase_result'])) {
+	if ($_SESSION['process_purchase_result']) {
+		$message = "<p class = 'successText'>Purchase was successfully processed.</p>";
+	}
+	else {
+		$message = "<p class = 'failedText'>Purchase was not successfully processed.</p>";
+	}
+	unset($_SESSION['process_purchase_result']);
+}
 if ($message) { echo $message; }
 include $_SERVER['DOCUMENT_ROOT'] . '/671Project/admin/templates/AdminFooter.php';
 ?>
